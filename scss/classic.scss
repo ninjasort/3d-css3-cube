@@ -1,0 +1,83 @@
+@import "bourbon";
+
+body {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 18px;
+    padding: 200px 0;
+    line-height: 1.5;
+    color: #eee;
+    background-color: #161616;
+}
+
+@include keyframes(rotate) {
+    from {
+        @include transform(rotate3d(0, 0, 0, 0deg));
+    }
+    to {
+        @include transform(rotate3d(0, 1, 1, 360deg));
+    }
+}
+
+.cube-container {
+    
+    $size: 300px;
+
+    position: relative;
+    width: $size;
+    height: $size;
+    margin: 0 auto;
+    @include perspective(1000px);
+    .cube {
+        position: absolute;
+        @include transform-style(preserve-3d);
+        @include transition(all 0.5s ease);
+        width: 100%;
+        height: 100%;
+        figure {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            @include background-image(url('feels_so_classic.jpg'));
+            background-size: cover;
+        }
+        .front {
+            @include transform(rotateY(0deg) translateZ($size/2));
+            &:hover {
+                cursor: pointer;
+                &:after {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(255, 109, 63, 0.21);
+                }
+            }
+            #classic-track {
+                display: none;
+            }
+        }
+        .back {
+            @include transform(rotateY(180deg) translateZ($size/2));
+        }
+        .left {
+            @include transform(rotateY(-90deg) translateZ($size/2));
+        }
+        .right {
+            @include transform(rotateY(90deg) translateZ($size/2));
+        }
+        .top {
+            @include transform(rotateX(90deg) translateZ($size/2));
+        }
+        .bottom {
+            @include transform(rotateX(-90deg) translateZ($size/2));
+        }
+        @include transform(translateZ(-$size/2));
+        &.playing {
+            @include transition(all 0.5s ease);
+            @include animation(rotate 8s linear infinite);
+        }
+    }
+}
