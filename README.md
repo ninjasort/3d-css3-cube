@@ -1,5 +1,9 @@
-# CSS3 3D Cube
-
-A 3D cube with CSS3 built with SASS. This example uses "The Knocks" ablum art for their single, "Classic". Enjoy!
-
 ![](screenshot.png)
+
+# Creating a 3D Cube with Sass
+
+Learn how to create a 3D cube with Sass
+
+[Read the Post](http://velocitycoding.com/2014/09/14/creating-a-3d-cube-with-sass)
+
+[View the Demo](http://velocitycoding.github.io/3d-cube-sass)

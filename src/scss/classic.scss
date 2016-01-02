@@ -1,0 +1,83 @@
+$cube-size: 300px;
+
+
+body {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 18px;
+  padding: 200px 0;
+  line-height: 1.5;
+  color: #eee;
+  background-color: #161616;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate3d(0, 0, 0, 0deg);
+  }
+  100% {
+    transform: rotate3d(0, 1, 1, 360deg);
+  }
+}
+
+.cube-container {
+  position: relative;
+  width: $cube-size;
+  height: $cube-size;
+  margin: 0 auto;
+  perspective: 1000px;
+  .cube {
+    position: absolute;
+    // determines if the children are positioned in 3d space or flattened
+    transform-style: preserve-3d;
+    // transition all properties when changed over 0.5 seconds
+    transition: all 0.5s ease;
+    width: 100%;
+    height: 100%;
+    figure {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: url('/assets/feels_so_classic.jpg');
+      background-size: cover;
+    }
+    .front {
+      transform: rotateY(0deg) translateZ($cube-size/2);
+      &:hover {
+        cursor: pointer;
+        &:after {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(255, 109, 63, 0.21);
+        }
+      }
+      #classic-track {
+        display: none;
+      }
+    }
+    .back {
+      transform: rotateY(180deg) translateZ($cube-size/2);
+    }
+    .left {
+      transform: rotateY(-90deg) translateZ($cube-size/2);
+    }
+    .right {
+      transform: rotateY(90deg) translateZ($cube-size/2);
+    }
+    .top {
+      transform: rotateX(90deg) translateZ($cube-size/2);
+    }
+    .bottom {
+      transform: rotateX(-90deg) translateZ($cube-size/2);
+    }
+    transform: translateZ(-$cube-size/2);
+    &.playing {
+      transition: all 0.5s ease;
+      animation: rotate 8s linear infinite;
+    }
+  }
+}
