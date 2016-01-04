@@ -11,7 +11,7 @@ gulp.task('watch', ['dist'], () => {
     }
   });
   gulp.watch([
-      'src/**/*.{js,css,html}',
+      'src/**/*.{js,scss,html}',
     ], ['dist'])
   .on('change', browserSync.reload);
 })
